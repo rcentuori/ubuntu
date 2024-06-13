@@ -25,5 +25,5 @@ docker_build_command = "docker build -t ubuntu ."
 run_command(docker_build_command)
 
 # Run the Docker container in the background and mount ~/ubuntu to /home/ubuntu in the container
-docker_run_command = "docker run -d -p 2222:22 -v ~/ubuntu:/home/ubuntu --name ubuntu ubuntu"
+docker_run_command = "docker run -h ubuntu -d -p 2222:22 -v ~/ubuntu:/home/ubuntu --name ubuntu ubuntu"
 run_command(docker_run_command)
