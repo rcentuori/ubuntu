@@ -2,7 +2,28 @@
 FROM ubuntu:latest
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y openssh-server sudo systemd systemd-sysv nano nmap iputils-ping
+RUN apt-get update && apt-get install -y \
+    openssh-server \
+    sudo \
+    systemd \
+    systemd-sysv \
+    nano \
+    nmap \
+    iputils-ping \
+    git \
+    curl \
+    gnupg \
+    wget \
+    npm
+
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+# Install vscode tunnel tooling and expose necessary port
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN npm install -g localtunnel
+EXPOSE 8080
 
 # Check if user 'ubuntu' exists, if not create it and add it to 'sudo' group
 RUN id -u ubuntu &>/dev/null || useradd -m ubuntu && echo "ubuntu:ubuntu" | chpasswd && adduser ubuntu sudo
