@@ -1,7 +1,7 @@
 # Use the latest version of Ubuntu
 FROM ubuntu:latest
 
-# Install necessary packages
+## Install necessary packages
 RUN apt-get update && apt-get install -y \
     openssh-server \
     sudo \
@@ -13,12 +13,10 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     gnupg \
-    wget \
-    npm
+    wget
 
-# Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
+# Install Node.js and npm
+RUN apt-get install -y nodejs npm
 
 # Install vscode tunnel tooling and expose necessary port
 RUN curl -fsSL https://code-server.dev/install.sh | sh
